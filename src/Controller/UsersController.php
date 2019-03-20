@@ -14,7 +14,8 @@ use Cake\Event\Event;
 class UsersController extends AppController
 {
 public  function beforeFilter(Event $event){
-    $this->Auth->allow(['signup','forgetpassword','logout']);
+    $this->Auth->allow(['signup','forgetpassword','logout','home']);
+
 
 }
     /**
@@ -22,6 +23,9 @@ public  function beforeFilter(Event $event){
      *
      * @return \Cake\Http\Response|void
      */
+    public function home(){
+
+    }
     public function index()
     {
         $users = $this->paginate($this->Users);
@@ -51,29 +55,30 @@ public  function beforeFilter(Event $event){
 
     public function login()
     {
-        //login
-        if ($this->request->is('post')) {
 
+
+        //check if user is logged in
             if($this->Auth->user('id')){
 
-                $this->Auth->setUser();
+                //$this->Auth->setUser();
                 $this->Flash->warning(__('You are alredy Logged in .'));
                 return $this->redirect(['controller'=>'Users','action'=>'index']);
             }
-            else{
+            if ($this->request->is('post')) {//check if login form submitted.
+
                 $user=$this->Auth->identify();
 
                 if($user){
                     $this->Auth->setUser($user);
 
-                    $this->Flash->success(__('You are loggin successfully.'));
+                    $this->Flash->success(__('Login Successful.'));
                     return $this->redirect(['controller'=>'Users','action'=>'index']);
                 }
 
                 $this->Flash->error(__('Sorry the login  was not correct'));
             }
 
-        }
+
 
 
     }
@@ -81,6 +86,7 @@ public  function beforeFilter(Event $event){
 public function logout(){
 
     $this->Flash->success('You are now logged out.');
+   // return $this->redirect(['controller'=>'Users','action'=>'home']);
     return $this->redirect($this->Auth->logout());
 
  }

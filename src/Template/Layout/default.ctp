@@ -36,6 +36,20 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <style>
+    input.hidden {
+                  position: absolute;
+                  left: -9999px;
+                }
+
+    #profile-image1 {
+                cursor: pointer;
+                width: 100px;
+                height: 100px;
+	            border:2px solid #03b1ce ;}
+	            .tital{ font-size:16px; font-weight:500;}
+	            .bot-border{ border-bottom:1px #f8f8f8 solid;  margin:5px 0  5px 0}
+    </style>
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
@@ -46,7 +60,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-            <li><?= $this->Form->postLink(__('Logout'), ['controller'=>'Users','action' => 'logout'])?></li>
+            <?php if(!$auth){ ?>
+            <li><?php echo $this->Html->link('Login',['controller'=>'users','action'=>'login']) ?></li>
+            <?php } ?>
+            <?php if($auth){ ?>
+            <li><a target='_blank' href="#"><?php echo $auth['User']['email']; ?></a></li>
+            <li><?php echo $this->Html->link('Logout',['controller'=>'users','action'=>'logout']) ?></li>
+
+            <?php } ?>
             </ul>
 
         </div>

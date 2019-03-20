@@ -4,32 +4,43 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
+
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="users form large-9 medium-8 columns content">
+
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="css/bootstrap.icon-large.min.css" rel="stylesheet">
+        <div class="col-md-4 col-md-offset-4" style='margin-top:20px;'>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Login via site</h3>
+                </div>
+                <div class="panel-body">
+                <?= $this->Form->create('User') ?>
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="yourmail@example.com" name="email" type="text">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="Remember Me"> Remember Me
+                                </label>
+                            </div>
+                            <?= $this->Form->button(__('submit'),['class'=>'btn btn-primary btn-block'])?>
+                        </fieldset>
+                    <?= $this->Form->end() ?>
+                    <hr/>
+                    <center>
+                        <h4>OR</h4></center>
 
 
-<?= $this->Form->create() ?>
-  <fieldset>
-    <legend>Login</legend>
-
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email"  name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp"class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" name="password" class="form-control" id="InputPassword1" placeholder="Password">
-    </div>
-    <?= $this->Form->button(__('Submit'),['class'=>'btn btn-primary']) ?>
-
-  </fieldset>
-  <?= $this->Form->end() ?>
-
-</div>
+                </div>
+            </div>
+        </div>
