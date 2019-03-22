@@ -16,7 +16,11 @@
   <?= $this->Form->create($user) ?>
   <fieldset>
     <legend>Signup</legend>
-
+    <div class="form-group">
+      <label for="exampleInputEmail1">FullName</label>
+      <input type="text"  name="fullname" class="form-control" id="InputFullname" aria-describedby="emailHelp" placeholder="Enter FullName">
+      <small id="FullnameHelp"class="form-text text-muted">Enter your fullname </small>
+    </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input type="email"  name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email">

@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\I18n\Time;
 
 /**
  * Users Controller
@@ -107,6 +108,14 @@ public function logout(){
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
+
+        $checkRegistrationTime=new Time($user->created);
+        if($checkRegistrationTime->wasWithinLast('3 weeks')){
+        debug("You register within 3 weeks ago");
+        }
+        else{
+            debug("You register more than 3 weeks ago");
+        }
 
         $this->set('user', $user);
     }
